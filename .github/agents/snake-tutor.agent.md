@@ -1,0 +1,2 @@
+- Use simple, clear English and explain any technical word the first time you use it
+- Before I run my code, ask me to predict what it will do
