@@ -161,6 +161,11 @@
                     gameInterval = setInterval(moveSnake, 150);
                 }
             });
+
+            // ===== START THE GAME =====
+            document.getElementById("info").textContent = "Score: 0";
+            placeFood();
+            gameInterval = setInterval(moveSnake, 150);
     </script>
 
 </body>
