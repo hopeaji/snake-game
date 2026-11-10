@@ -121,6 +121,17 @@
 
                 food = newFood;
             }
+
+            // ===== 3. KEYBOARD CONTROLS =====
+            document.addEventListener("keydown", function(e) {
+                if (!gameRunning) return;
+                if (e.key.startsWith("Arrow")) e.preventDefault();
+                // Prevent reversing into yourself
+                if (e.key === "ArrowUp"    && direction.y === 0) direction = { x: 0, y: -1 };
+                if (e.key === "ArrowDown"  && direction.y === 0) direction = { x: 0, y:  1 };
+                if (e.key === "ArrowLeft"  && direction.x === 0) direction = { x: -1, y: 0 };
+                if (e.key === "ArrowRight" && direction.x === 0) direction = { x:  1, y: 0 };
+            });
     </script>
 
 </body>
