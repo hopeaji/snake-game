@@ -140,6 +140,27 @@
                 document.getElementById("info").textContent =
                     "Game Over! Score: " + score + " — Press R to restart";
             }
+
+            // ===== 5. RESTART =====
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "r" || e.key === "R") {
+                    // Reset everything
+                    snake = [
+                    { x: 10, y: 10 },
+                    { x: 9,  y: 10 },
+                    { x: 8,  y: 10 }
+                    ];
+                    direction = { x: 1, y: 0 };
+                    score = 0;
+                    gameRunning = true;
+                    placeFood();
+                    document.getElementById("info").textContent = "Score: 0";
+                    drawGame();
+
+                    clearInterval(gameInterval);
+                    gameInterval = setInterval(moveSnake, 150);
+                }
+            });
     </script>
 
 </body>
