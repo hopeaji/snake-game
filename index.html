@@ -63,7 +63,51 @@
         // Step 5: Improvements
         //
         // ===================================
+        // ===== GAME STATE =====
+        let gameRunning = true;
+        let gameInterval = null;
 
+        // ===== 1. MOVE THE SNAKE =====
+        function moveSnake() {
+            if (!gameRunning) return;
+
+            // Create new head
+            const head = {
+                x: snake[0].x + direction.x,
+                y: snake[0].y + direction.y
+            };
+
+            // Check wall collision
+            if (
+                head.x < 0 || head.x >= tileCount ||
+                head.y < 0 || head.y >= tileCount
+            ) {
+                endGame();
+                return;
+            }
+
+            // Check self collision
+            for (let i = 0; i < snake.length; i++) {
+                if (snake[i].x === head.x && snake[i].y === head.y) {
+                endGame();
+                return;
+                }
+            }
+
+            // Add new head
+            snake.unshift(head);
+
+            // Check if food was eaten
+            if (head.x === food.x && head.y === food.y) {
+                score++;
+                document.getElementById("info").textContent = "Score: " + score;
+                placeFood();          // grow by NOT removing the tail
+            } else {
+                snake.pop();          // normal move – remove tail
+            }
+
+                drawGame();
+            }
     </script>
 
 </body>
